@@ -42,7 +42,7 @@ USER hono
 COPY package.json .
 
 COPY --from=app_builder_base --chown=hono:hono /app/dist ./dist
-COPY --from=app_builder_base --chown=hono:hono /app/src/static ./dist/src/static
+COPY --from=app_builder_base --chown=hono:hono /app/src/static ./src/static
 
 
 CMD [ "bun", "run", "start" ]
