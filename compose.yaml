@@ -33,7 +33,7 @@ services:
       - traefik.http.routers.reel-tracker.rule=HOST(`${APP_HOST?}`)
       - traefik.http.routers.reel-tracker.tls=true
       - traefik.http.routers.reel-tracker.entrypoints=secure-web
-      - traefik.http.middlewares.reel-tracker.basicauth.users=amini:$2y$05$ew47e5SsXaithchwUxuhjOSt2755N9UGWzeaVIVV4UQEE3ulh3L2q
+      - traefik.http.middlewares.reel-tracker.basicauth.users=amini:$$2y$$05$$ew47e5SsXaithchwUxuhjOSt2755N9UGWzeaVIVV4UQEE3ulh3L2q
       - traefik.http.middlewares.reel-tracker.basicauth.removeheader=true
       - traefik.http.routers.reel-tracker.middlewares=reel-tracker
 volumes:
