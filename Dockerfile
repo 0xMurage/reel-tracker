@@ -45,5 +45,4 @@ COPY --from=app_builder_base --chown=hono:hono /app/dist ./dist
 COPY --from=app_builder_base --chown=hono:hono /app/src/static ./dist/src/static
 
 
-EXPOSE 3000/tcp
 CMD [ "bun", "run", "start" ]
