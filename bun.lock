@@ -5,12 +5,12 @@
       "name": "sui",
       "dependencies": {
         "@libsql/client": "^0.15.7",
-        "dbmate": "^2.27.0",
         "hono": "^4.7.10",
       },
       "devDependencies": {
         "@eslint/js": "^9.27.0",
         "@types/bun": "^1.2.14",
+        "dbmate": "^2.27.0",
         "prettier": "^3.5.3",
         "typescript": "^5.8.3",
       },

@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "bun run --hot src/index.tsx",
+    "start": "bun run src/index.tsx",
     "build": "bun build src/index.tsx --outdir ./dist --target bun",
     "db:migrate": "dbmate $([[ -f ./.env ]] && echo '--env-file ./.env') up",
     "db:rollback": "dbmate $([[ -f ./.env ]] && echo '--env-file ./.env') rollback",
@@ -17,12 +18,12 @@
   "license": "ISC",
   "dependencies": {
     "@libsql/client": "^0.15.7",
-    "dbmate": "^2.27.0",
     "hono": "^4.7.10"
   },
   "devDependencies": {
     "@eslint/js": "^9.27.0",
     "@types/bun": "^1.2.14",
+    "dbmate": "^2.27.0",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3"
   }
