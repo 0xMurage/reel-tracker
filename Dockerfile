@@ -2,9 +2,14 @@ FROM oven/bun:1.2.9-alpine AS migrations
 
 WORKDIR /app
 
-RUN bun install dbmate
+RUN addgroup --system --gid 1001 hono && adduser --system --uid 1001 hono
 
-COPY package.json .
+RUN bun install dbmate && mkdir data && chown -R hono:hono /app
+
+COPY --chown=hono:hono package.json .
+
+# Switch to non-root user
+USER hono:hono
 
 COPY database/migrations database/migrations
 
@@ -33,13 +38,12 @@ FROM oven/bun:1.2.9-alpine AS app_release
 WORKDIR /app
 
 # Create app user
-RUN addgroup --system --gid 1001 hono
-RUN adduser --system --uid 1001 hono
+RUN addgroup --system --gid 1001 hono && adduser --system --uid 1001 hono
 
 # Switch to non-root user
-USER hono
+USER hono:hono
 
-COPY package.json .
+COPY --chown=hono:hono package.json .
 
 COPY --from=app_builder_base --chown=hono:hono /app/dist ./dist
 COPY --from=app_builder_base --chown=hono:hono /app/src/static ./src/static
