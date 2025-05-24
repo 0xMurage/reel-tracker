@@ -1,0 +1,7 @@
+# deps
+node_modules/
+.env
+.devbox
+__MACOSX
+.idea
+*.sqlite3
