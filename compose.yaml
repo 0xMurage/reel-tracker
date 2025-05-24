@@ -5,16 +5,16 @@ services:
     image: ${MIGRATIONS_APP:-migrations}:${VERSION:-latest}
     command: bun run db:migrate
     volumes:
-      - sqlite_db:/app/${SQLITE_FILEPATH}
+      - sqlite_db:/app/data
     environment:
-      - DATABASE_URL="sqlite3:${SQLITE_FILEPATH}"
+      - DATABASE_URL=sqlite:${SQLITE_FILEPATH}
       - DBMATE_MIGRATIONS_DIR=./database/migrations
       - DBMATE_NO_DUMP_SCHEMA=true
   app:
     restart: unless-stopped
     image: ${APP_IMAGE}:${VERSION:-latest}
     volumes:
-      - sqlite_db:/app/${SQLITE_FILEPATH}
+      - sqlite_db:/app/data
     expose:
       - ${PORT}
     networks:
