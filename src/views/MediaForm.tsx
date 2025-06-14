@@ -15,6 +15,18 @@ export const MediaForm = ({ media }: MediaFormProps) => {
           <div>
             <div class="form-row">
               <div class="form-group">
+                <label for="type">Type *</label>
+                <select id="type" name="type" required>
+                  <option value="movie" selected={media?.type === "movie"}>
+                    Movie
+                  </option>
+                  <option value="series" selected={media?.type === "series"}>
+                    TV Series
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
                 <label for="title">Title *</label>
                 <div style="position: relative;">
                   <input
@@ -28,18 +40,6 @@ export const MediaForm = ({ media }: MediaFormProps) => {
                   />
                   <div id="search-results" class="search-results"></div>
                 </div>
-              </div>
-
-              <div class="form-group">
-                <label for="type">Type *</label>
-                <select id="type" name="type" required>
-                  <option value="movie" selected={media?.type === "movie"}>
-                    Movie
-                  </option>
-                  <option value="series" selected={media?.type === "series"}>
-                    TV Series
-                  </option>
-                </select>
               </div>
             </div>
 
