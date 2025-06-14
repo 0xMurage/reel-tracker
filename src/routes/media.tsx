@@ -58,9 +58,9 @@ routes.get("/search", async (c) => {
 
 // List all media with filters
 routes.get("/", async (c) => {
-  const type = c.req.query("type") ?? "all"
-  const status = c.req.query("status") ?? "all"
-  const search = c.req.query("search") ?? ""
+  const type = c.req.query("type")?.trim()
+  const status = c.req.query("status")?.trim()
+  const search = c.req.query("search")?.trim()
 
   let query = `
       SELECT m.*,
@@ -77,18 +77,14 @@ routes.get("/", async (c) => {
 
   const params: any[] = []
 
-  if (type !== "all") {
+  if (type) {
     query += " AND m.type = ?"
     params.push(type)
   }
 
-  if (status !== "all") {
-    if (status === "unwatched") {
-      query += ' AND (um.status IS NULL OR um.status = "to_watch")'
-    } else {
-      query += " AND um.status = ?"
-      params.push(status)
-    }
+  if (status) {
+    query += " AND um.status = ?"
+    params.push(status)
   }
 
   if (search) {
@@ -103,7 +99,7 @@ routes.get("/", async (c) => {
 
   return c.html(
     <Layout title="All Media">
-      <MediaList media={media} currentType={type} currentStatus={status} currentSearch={search} />
+      <MediaList media={media} currentType={type ?? ""} currentStatus={status ?? ""} currentSearch={search ?? ""} />
     </Layout>,
   )
 })

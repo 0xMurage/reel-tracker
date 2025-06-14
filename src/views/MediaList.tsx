@@ -17,7 +17,7 @@ export const MediaList = ({ media, currentType, currentStatus, currentSearch }: 
 
       <form method="get" class="filters">
         <select name="type">
-          <option value="all" selected={currentType === "all"}>
+          <option selected={currentType === ""}>
             All Types
           </option>
           <option value="movie" selected={currentType === "movie"}>
@@ -29,11 +29,8 @@ export const MediaList = ({ media, currentType, currentStatus, currentSearch }: 
         </select>
 
         <select name="status">
-          <option value="all" selected={currentStatus === "all"}>
+          <option selected={currentStatus === ""}>
             All Status
-          </option>
-          <option value="unwatched" selected={currentStatus === "unwatched"}>
-            Unwatched
           </option>
           <option value="to_watch" selected={currentStatus === "to_watch"}>
             To Watch
